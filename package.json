@@ -1,0 +1,35 @@
+{
+  "name": "@phaesynthe/shared-ts-node-services",
+  "description": "A collection of logic services shared between projects",
+  "keywords": [],
+  "version": "0.0.1-alpha",
+  "homepage": "",
+  "author": "Matthew W. Jackson <matthew@phaesynthe.com>",
+  "engines": {
+    "node": ">= 18.0.0",
+    "npm": ">=8.12.1"
+  },
+  "license": "Not Licensed",
+  "files": [],
+  "scripts": {
+
+  },
+  "dependencies": {
+    "@types/node": "18.11.12",
+    "@types/ws": "^8.5.4",
+    "cors": "2.8.5",
+    "express": "4.18.2",
+    "ts-node": "10.9.1",
+    "tslib": "2.4.1",
+    "typescript": "4.9.4",
+    "ws": "8.11.0"
+  },
+  "devDependencies": {
+    "@types/jest": "27.0.2",
+    "jest": "27.5.1",
+    "prettier": "2.6.2",
+    "ts-jest": "27.0.7",
+    "ts-node": "10.4.0",
+    "typescript": "4.4.4"
+  }
+}
