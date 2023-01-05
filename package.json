@@ -14,16 +14,8 @@
     "npm": ">=8.12.1"
   },
   "license": "Not Licensed",
-  "main": "./dist/index.cjs.js",
-  "module": "./dist/index.mjs",
+  "main": "./dist/index.d.ts",
   "types": "./dist/index.d.ts",
-  "exports": {
-    "node": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs.js"
-    },
-    "default": "./dist/index.mjs"
-  },
   "scripts": {
     "build": "npm run clean && tsc",
     "clean": "rm -rf ./dist/"
