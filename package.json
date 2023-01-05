@@ -5,14 +5,28 @@
   "version": "0.0.1-alpha",
   "homepage": "",
   "author": "Matthew W. Jackson <matthew@phaesynthe.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Phaesynthe/shared-ts-node-services"
+  },
   "engines": {
     "node": ">= 18.0.0",
     "npm": ">=8.12.1"
   },
   "license": "Not Licensed",
-  "main": "src/index.ts",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "node": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs.js"
+    },
+    "default": "./dist/index.mjs"
+  },
   "scripts": {
-
+    "build": "npm run clean && tsc",
+    "clean": "rm -rf ./dist/"
   },
   "dependencies": {
     "@types/node": "18.11.12",
