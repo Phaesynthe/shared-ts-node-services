@@ -1,17 +1,23 @@
-import WebSocket from "ws";
+import WebSocket from 'ws';
 
-import {WebsocketEvent, WebsocketRouter} from './index';
+import { WebsocketEvent, WebsocketRouter } from './index';
 
 export class WebsocketConnectionContainer {
     public readonly id: string;
-    private readonly connection: WebSocket;
+    private readonly _connection: WebSocket;
+    public get connection() { return this._connection; }
+
     private messageRouters: Map<WebsocketEvent, WebsocketRouter>;
 
     public errorRouter: (WebSocket) => void;
 
     constructor(connection: WebSocket, id: string) {
         this.id = id;
-        this.connection = connection;
+        this._connection = connection;
+    }
+
+    public send(event: WebsocketEvent) {
+        this._connection.send(event);
     }
 
     public setRouter(event: WebsocketEvent, router: WebsocketRouter) {

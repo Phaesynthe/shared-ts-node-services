@@ -1,7 +1,4 @@
-// import { promisify as Promisify } from 'util'
-
-import {ServiceBase} from "./ServiceBase";
-// import {Config} from "./Config";
+import { ServiceBase } from "./ServiceBase";
 
 import WebSocket, { WebSocketServer } from 'ws';
 import { generateRandomHexId, waitForCondition} from "../utilities";
@@ -41,7 +38,13 @@ export class WebsocketGatewayHostService extends ServiceBase {
     private handlePeerServerConnection(socketConnection: WebSocket) {
         console.log('peer Service Connected!');
         console.log('Who could it be?');
+
+        socketConnection.on(UniversalSocketEvents.Message, this.defaultPeerServiceRouter);
     };
+
+    private defaultPeerServiceRouter(data: WebSocket.RawData) {
+        console.log(data);
+    }
 
     // </editor-fold>
 

@@ -1,9 +1,9 @@
-import {ServiceBase} from "./ServiceBase"; // ToDo: externalize
+import { ServiceBase} from "./ServiceBase";
 
-import {WebsocketConnectionContainer, WebsocketEvent, WebsocketRouter} from '../models';
+import { WebsocketConnectionContainer, WebsocketEvent, WebsocketRouter } from '../models';
 
 import WebSocket from 'ws';
-import {waitForCondition} from "../utilities";
+import { waitForCondition } from "../utilities";
 
 // We keep these as numbers to avoid string matching speed reductions
 export enum MicroserviceConnection {
