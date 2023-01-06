@@ -26,10 +26,12 @@ This repo is intended to be leveraged as a git submodule.
 ```bash
 mkdir sub_modules
 cd sub_modules
-git submodule add [Repo URL]
+git submodule add git@github.com:[User Name]/[Repo Name].git
 cd ..
 npm i "./sub_modules/[Repo Name]" --save
 ```
+**Note**: When working with Github, and ideally in all situations, use SSH URIs.
+
 
 ## License
 This project and all of its contents is not licensed for any purpose whatsoever.
