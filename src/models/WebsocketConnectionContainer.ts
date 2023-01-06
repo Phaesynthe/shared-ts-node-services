@@ -14,6 +14,9 @@ export class WebsocketConnectionContainer {
     constructor(connection: WebSocket, id: string) {
         this.id = id;
         this._connection = connection;
+
+        this.messageRouters = new Map();
+        this.errorRouter = () => {};
     }
 
     public send(event: WebsocketEvent) {
@@ -25,9 +28,10 @@ export class WebsocketConnectionContainer {
             throw new Error('Attempt to mount router when no connection is present');
         }
         // If there is a router for the event, remove it from the connection
-        if (this.messageRouters.get(event)) {
+        const oldRouter = this.messageRouters.get(event);
+        if (oldRouter) {
             console.log(`Removing message router for: ${event}`);
-            this.connection.removeListener(event, this.messageRouters.get(event));
+            this.connection.removeListener(event, oldRouter);
         }
 
         // Now, set the listener and retain the router
