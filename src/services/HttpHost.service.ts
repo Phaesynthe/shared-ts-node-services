@@ -1,20 +1,15 @@
-import {ServiceBase} from "./ServiceBase";
-// import {Config} from "./Config";
-
 import * as bodyParser from 'body-parser';
 import express from 'express';
 import cors from 'cors';
-import {HttpMethod} from "../models";
 
-export class HttpHostService extends ServiceBase {
+export class HttpHostService {
     private app: express.Application;
-    private readonly router: express.Router;
+    public readonly router: express.Router;
     private server: express.Server;
     private readonly origins: string[];
     private readonly httpPort: number;
 
     constructor (httpPort: number, origins: string[]) {
-        super();
         this.app = express();
         this.router = express.Router();
         this.httpPort = httpPort;
@@ -30,29 +25,6 @@ export class HttpHostService extends ServiceBase {
 
         // Api Routes
         this.app.use('/', this.router);
-    }
-
-    public mountHandler(path: string, method: HttpMethod, handler: Promise<void>) {
-        switch (method) {
-            case HttpMethod.Get:
-                this.router.get(path, handler);
-                break;
-            case HttpMethod.Patch:
-                this.router.patch(path, handler);
-                break;
-            case HttpMethod.Post:
-                this.router.post(path, handler);
-                break;
-            case HttpMethod.Put:
-                this.router.put(path, handler);
-                break;
-            case HttpMethod.Delete:
-                this.router.delete(path, handler);
-                break;
-            default:
-                console.error(`Attempt to mount route with an unknown method: ${method} ${path}`);
-                break;
-        }
     }
 
     public start() {

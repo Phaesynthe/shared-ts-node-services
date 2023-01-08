@@ -1,3 +1,6 @@
+import {promisify} from "util";
+
+export const nextTick = promisify(process.nextTick)
 
 export async function timeout(milliseconds: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -23,7 +26,7 @@ export async function waitForCondition(
 }
 
 /**
- * Generates 12 random hex digits
+ * Generates 12 random hex digits. 2.8147498e+14 max value. So, 281 trillion in number-space.
  */
 export function generateRandomHexId() {
     return [...Array(12)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
