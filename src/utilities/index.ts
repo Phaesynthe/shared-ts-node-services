@@ -26,8 +26,8 @@ export async function waitForCondition(
 }
 
 /**
- * Generates 12 random hex digits. 2.8147498e+14 max value. So, 281 trillion in number-space.
+ * Generates n characters of random hex digits. Default is 12 or 2.8147498e+14 max value. So, 281 trillion in number-space.
  */
-export function generateRandomHexId() {
-    return [...Array(12)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+export function generateRandomHex(length: number = 12) {
+    return [...Array(length)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
 }

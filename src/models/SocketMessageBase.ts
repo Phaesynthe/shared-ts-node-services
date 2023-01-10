@@ -1,4 +1,4 @@
-import {generateRandomHexId} from "../utilities";
+import {generateRandomHex} from "../utilities";
 import WebSocket from "ws";
 
 export class SocketMessageBase {
@@ -13,7 +13,7 @@ export class SocketMessageBase {
 
     toMessage(): Buffer {
         if (!this.actionId) {
-            this.actionId = generateRandomHexId();
+            this.actionId = generateRandomHex();
         }
         return Buffer.from(JSON.stringify(this));
     }
