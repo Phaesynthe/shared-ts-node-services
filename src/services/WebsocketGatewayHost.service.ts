@@ -1,7 +1,7 @@
 import { ServiceBase } from "./ServiceBase";
 
 import WebSocket, { WebSocketServer } from 'ws';
-import { generateRandomHexId, waitForCondition} from "../utilities";
+import { generateRandomHex, waitForCondition} from "../utilities";
 // import { IdentifyMessage } from "../Models";
 // import { ClientMessageRouter, IdentityServiceMessageRouter } from "../MessageRouters";
 // import {ContextualizedRouter} from "../Models/ContextualizedRouter";

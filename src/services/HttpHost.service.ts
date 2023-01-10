@@ -9,7 +9,7 @@ export class HttpHostService {
     private readonly origins: string[];
     private readonly httpPort: number;
 
-    constructor (httpPort: number, origins: string[]) {
+    constructor (httpPort: number, origins: string[] = []) {
         this.app = express();
         this.router = express.Router();
         this.httpPort = httpPort;
