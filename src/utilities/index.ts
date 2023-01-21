@@ -1,4 +1,4 @@
-import {promisify} from "util";
+import { promisify } from "util";
 
 export const nextTick = promisify(process.nextTick)
 

@@ -5,6 +5,7 @@ export enum HttpResponseCode {
 
     Unauthorized = 401,
     NotFound = 404,
+    Conflict = 409,
     MethodNotAllowed = 405,
     UnprocessableEntity = 422,
 

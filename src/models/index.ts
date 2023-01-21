@@ -1,10 +1,6 @@
-export * from './WebsocketConnectionContainer';
-
 export * from './HttpMethodEnum';
 export * from './HttpResponseCodeEnum';
 export * from './IHttpRouteDefinition';
-
-export * from './SocketMessageBase';
 
 export type WebsocketRouter = (WebSocket) => void;
 

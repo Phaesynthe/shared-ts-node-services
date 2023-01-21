@@ -20,14 +20,14 @@ describe('Relational Database Service', () => {
   const poolMock = Pool as unknown as jest.Mock;
 
   it('can be instantiated', () => {
-    const rdbService = RelationalDatabaseService.instance;
+    const rdbService = RelationalDatabaseService.instance();
     expect(rdbService).toBeDefined();
     expect(poolMock.mock.calls.length).toEqual(1);
   });
 
   describe('healthcheck()', () => {
     it('exists', () => {
-      const rdbService = RelationalDatabaseService.instance;
+      const rdbService = RelationalDatabaseService.instance();
       expect(rdbService.healthcheck).toBeDefined();
       expect(typeof rdbService.healthcheck).toEqual('function');
     });
@@ -36,7 +36,7 @@ describe('Relational Database Service', () => {
       connectionMock.query.mockImplementationOnce((statement: string) => {
         return { rows: [ { time: 'fake time' } ] };
       });
-      const result = await RelationalDatabaseService.instance.healthcheck();
+      const result = await RelationalDatabaseService.instance().healthcheck();
       expect(connectionMock.query).toBeCalledTimes(1);
       expect(connectionMock.release).toBeCalledTimes(1);
       expect(result.ok).toBeDefined();
@@ -48,14 +48,14 @@ describe('Relational Database Service', () => {
 
   describe('query()', () => {
     it('exists', () => {
-      const rdbService = RelationalDatabaseService.instance;
+      const rdbService = RelationalDatabaseService.instance();
       expect(rdbService.query).toBeDefined();
       expect(typeof rdbService.query).toEqual('function');
     });
   });
 
   it('shutdown()', async () => {
-    expect(RelationalDatabaseService.shutdown).toBeDefined();
-    expect(typeof RelationalDatabaseService.shutdown).toEqual('function');
+    expect(RelationalDatabaseService.instance().shutdown).toBeDefined();
+    expect(typeof RelationalDatabaseService.instance().shutdown).toEqual('function');
   });
 });

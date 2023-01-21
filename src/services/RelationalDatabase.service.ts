@@ -1,21 +1,8 @@
-import { Pool, PoolConfig } from 'pg';
-import {ServiceBase} from "./ServiceBase";
-import {timeout} from "../utilities";
+import { Pool } from 'pg';
+import { ServiceBase } from "./ServiceBase";
 
 export class RelationalDatabaseService extends ServiceBase {
   private connectionPool: Pool;
-
-  // Provides a configured singleton Instance
-  // static _instance: RelationalDatabaseService;
-  //
-  // public static get instance(): RelationalDatabaseService {
-  //   const config: PoolConfig = Config.get().dbConfig;
-  //   if (!RelationalDatabaseService._instance) {
-  //     RelationalDatabaseService._instance = new RelationalDatabaseService();
-  //   }
-  //
-  //   return RelationalDatabaseService._instance;
-  // }
 
   public connect(user: string, host: string, database: string, port: number, password: string) {
     this.connectionPool = new Pool({
@@ -25,7 +12,6 @@ export class RelationalDatabaseService extends ServiceBase {
       password,
       port
     });
-    // await timeout(50);
   }
 
   public async healthcheck() {
@@ -53,6 +39,8 @@ export class RelationalDatabaseService extends ServiceBase {
         throw new Error('Duplicate Record Conflict');
       } else if (/^Error: No record:/.test(err.message)) {
         throw err;
+      } else if (err.message === 'Cannot read properties of undefined (reading \'release\')') {
+        throw new Error('Connection not initialized');
       } else {
         console.log(statement);
         console.error(`Unexpected SQL query error: ${err.message}`);
@@ -65,7 +53,7 @@ export class RelationalDatabaseService extends ServiceBase {
     return result.rows;
   }
 
-  public static async shutdown() {
+  public async shutdown() {
     if (RelationalDatabaseService._instance) {
       await RelationalDatabaseService.instance().connectionPool.end();
       RelationalDatabaseService._instance = undefined;
